@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WattWise - Smart Electricity Optimizer</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="/" class="logo-link">
+                <svg width="200" height="80" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="80" cy="100" r="60" fill="none" stroke="#1e40af" stroke-width="12" />
+                    <polygon points="80,50 95,85 70,85 90,150" fill="#facc15" />
+                    <text x="160" y="110" font-family="Segoe UI, sans-serif" font-size="50" fill="#1e40af" font-weight="bold">
+                        Watt<tspan fill="#facc15">Wise</tspan>
+                    </text>
+                </svg>
+            </a>
+            <nav class="nav">
+                <a href="/dashboard" class="dashboard-btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                    </svg>
+                    Dashboard
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <h1 class="page-title">Smart Meter Dashboard</h1>
+            
+            <!-- Live Metrics -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-icon voltage-icon">V</div>
+                    <div class="metric-value" id="liveVoltage">--</div>
+                    <div class="metric-label">Live Voltage (V)</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon current-icon">A</div>
+                    <div class="metric-value" id="liveCurrent">--</div>
+                    <div class="metric-label">Live Current (A)</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon power-icon">W</div>
+                    <div class="metric-value" id="livePower">--</div>
+                    <div class="metric-label">Live Power (W)</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon units-icon">kWh</div>
+                    <div class="metric-value" id="monthlyUnits">0</div>
+                    <div class="metric-label">Monthly Units</div>
+                </div>
+            </div>
+
+            <!-- Power Consumption Chart -->
+            <div class="chart-section">
+                <div class="chart-header">
+                    <h2>Power Consumption</h2>
+                    <div class="chart-controls">
+                        <button class="chart-btn active" data-period="today">Today</button>
+                        <button class="chart-btn" data-period="week">This Week</button>
+                        <button class="chart-btn" data-period="month">This Month</button>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="powerChart" width="800" height="400"></canvas>
+                </div>
+            </div>
+
+            <!-- Optimization Results -->
+            <div class="optimization-section">
+                <div class="optimization-card">
+                    <h3>Slot Recommendation</h3>
+                    <p class="algorithm-name">Greedy Algorithm</p>
+                    <div class="recommendation-content" id="slotRecommendation">
+                        <div class="loading">Analyzing optimal time slots...</div>
+                    </div>
+                </div>
+                <div class="optimization-card">
+                    <h3>Peak Detection</h3>
+                    <p class="algorithm-name">Sliding Window Algorithm</p>
+                    <div class="recommendation-content" id="peakDetection">
+                        <div class="loading">Detecting consumption peaks...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#about">About</a>
+                <a href="#contact">Contact Us</a>
+            </div>
+            <div class="footer-company">
+                <p>&copy; 2025 WattWise Technologies. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>

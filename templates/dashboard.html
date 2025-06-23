@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WattWise - Dashboard</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="/" class="logo-link">
+                <svg width="200" height="80" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="80" cy="100" r="60" fill="none" stroke="#1e40af" stroke-width="12" />
+                    <polygon points="80,50 95,85 70,85 90,150" fill="#facc15" />
+                    <text x="160" y="110" font-family="Segoe UI, sans-serif" font-size="50" fill="#1e40af" font-weight="bold">
+                        Watt<tspan fill="#facc15">Wise</tspan>
+                    </text>
+                </svg>
+            </a>
+            <nav class="nav">
+                <a href="/dashboard" class="dashboard-btn active">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                    </svg>
+                    Dashboard
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <h1 class="page-title">Dashboard</h1>
+            
+            <!-- Billing Section -->
+            <div class="billing-section">
+                <h2>Billing Configuration</h2>
+                <div class="billing-options">
+                    <div class="billing-card">
+                        <h3>Single Rate Billing</h3>
+                        <div class="billing-form">
+                            <label for="singleRate">Rate per Unit (₹/kWh)</label>
+                            <input type="number" id="singleRate" placeholder="Enter rate" step="0.01">
+                            <button class="calculate-btn" onclick="calculateSingleBill()">Calculate Bill</button>
+                            <div class="bill-result" id="singleBillResult"></div>
+                        </div>
+                    </div>
+                    <div class="billing-card">
+                        <h3>Variable Rate Billing</h3>
+                        <div class="billing-form">
+                            <div class="time-slots">
+                                <div class="slot-input">
+                                    <label>Peak Hours (9AM-6PM)</label>
+                                    <input type="number" id="peakRate" placeholder="Rate" step="0.01">
+                                </div>
+                                <div class="slot-input">
+                                    <label>Standard Hours (6PM-10PM)</label>
+                                    <input type="number" id="standardRate" placeholder="Rate" step="0.01">
+                                </div>
+                                <div class="slot-input">
+                                    <label>Off-Peak Hours (10PM-9AM)</label>
+                                    <input type="number" id="offPeakRate" placeholder="Rate" step="0.01">
+                                </div>
+                            </div>
+                            <button class="calculate-btn" onclick="calculateVariableBill()">Calculate Bill</button>
+                            <div class="bill-result" id="variableBillResult"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Appliances Section -->
+            <div class="appliances-section">
+                <h2>Appliances Monitor</h2>
+                <div class="appliances-grid">
+                    <div class="appliance-card">
+                        <h3>Refrigerator</h3>
+                        <div class="appliance-metrics">
+                            <div class="appliance-metric">
+                                <span class="metric-label">Voltage</span>
+                                <span class="metric-value" id="fridgeVoltage">--</span>
+                            </div>
+                            <div class="appliance-metric">
+                                <span class="metric-label">Current</span>
+                                <span class="metric-value" id="fridgeCurrent">--</span>
+                            </div>
+                            <div class="appliance-metric">
+                                <span class="metric-label">Power</span>
+                                <span class="metric-value" id="fridgePower">--</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="appliance-card">
+                        <h3>Air Conditioner</h3>
+                        <div class="appliance-metrics">
+                            <div class="appliance-metric">
+                                <span class="metric-label">Voltage</span>
+                                <span class="metric-value" id="acVoltage">--</span>
+                            </div>
+                            <div class="appliance-metric">
+                                <span class="metric-label">Current</span>
+                                <span class="metric-value" id="acCurrent">--</span>
+                            </div>
+                            <div class="appliance-metric">
+                                <span class="metric-label">Power</span>
+                                <span class="metric-value" id="acPower">--</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="appliance-card">
+                        <h3>Water Geyser</h3>
+                        <div class="appliance-metrics">
+                            <div class="appliance-metric">
+                                <span class="metric-label">Voltage</span>
+                                <span class="metric-value" id="geyserVoltage">--</span>
+                            </div>
+                            <div class="appliance-metric">
+                                <span class="metric-label">Current</span>
+                                <span class="metric-value" id="geyserCurrent">--</span>
+                            </div>
+                            <div class="appliance-metric">
+                                <span class="metric-label">Power</span>
+                                <span class="metric-value" id="geyserPower">--</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="appliance-card">
+                        <h3>Microwave</h3>
+                        <div class="appliance-metrics">
+                            <div class="appliance-metric">
+                                <span class="metric-label">Voltage</span>
+                                <span class="metric-value" id="microwaveVoltage">--</span>
+                            </div>
+                            <div class="appliance-metric">
+                                <span class="metric-label">Current</span>
+                                <span class="metric-value" id="microwaveCurrent">--</span>
+                            </div>
+                            <div class="appliance-metric">
+                                <span class="metric-label">Power</span>
+                                <span class="metric-value" id="microwavePower">--</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Live Recommendations -->
+            <div class="recommendations-section">
+                <h2>Live Optimization Recommendations</h2>
+                <div class="recommendations-container" id="liveRecommendations">
+                    <div class="loading">Analyzing appliance data for optimization...</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#about">About</a>
+                <a href="#contact">Contact Us</a>
+            </div>
+            <div class="footer-company">
+                <p>&copy; 2025 WattWise Technologies. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/static/dashboard.js"></script>
+</body>
+</html>
